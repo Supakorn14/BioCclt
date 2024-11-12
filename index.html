@@ -132,6 +132,7 @@ function calculateGenetics() {
 }
 
 function calculateAlleleFrequency() {
+function calculateAlleleFrequency() {
     // รับค่าจากฟอร์ม
     let frequencyO = parseFloat(document.getElementById("frequencyO").value);
     let frequencyA = parseFloat(document.getElementById("frequencyA").value);
@@ -143,20 +144,17 @@ function calculateAlleleFrequency() {
         return;
     }
 
-    // คำนวณค่าอัลลีล r, p และ q
+    // คำนวณค่าอัลลีล r, p และ q โดยใช้สูตรพื้นฐานจากความถี่ของหมู่เลือด
     let r = Math.sqrt(frequencyO);
     let p = Math.sqrt(frequencyA + frequencyO) - r;
     let q = Math.sqrt(frequencyB + frequencyO) - r;
-
-    // คำนวณค่า q จากสูตร q = 1 - (p + r) (เพื่อเป็นการตรวจสอบว่า q มีค่าถูกต้อง)
-    let q_alternative = 1 - (p + r);
 
     // แสดงผลลัพธ์
     document.getElementById("results").innerHTML += 
         `r (I^i): ${r.toFixed(4)}<br>` +
         `p (I^A): ${p.toFixed(4)}<br>` +
-        `q (I^B): ${q.toFixed(4)}<br>` +
-        `Alternative q check (1 - (p + r)): ${q_alternative.toFixed(4)}<br><br>`;
+        `q (I^B): ${q.toFixed(4)}<br><br>`;
+
 }
 </script>
 
